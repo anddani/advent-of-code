@@ -7,7 +7,7 @@ my $nice = 0;
 
 while (<>) {
     chomp $_;
-    if ($_ =~ m/([aeiou].*){3}/ &&
+    if ($_ =~ m/(?:[aeiou].*){3}/ &&
         $_ =~ m/(.)\1/ &&
         $_ !~ m/ab|cd|pq|xy/) {
         $nice++;
