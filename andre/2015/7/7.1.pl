@@ -56,9 +56,6 @@ sub get_signal {
         return $wires{$input}{signal};
     }
 
-    if (!exists($wires{$input}{op})) {
-        print "NOT INIT: ", $input, "\n";
-    }
     if ($wires{$input}{op} eq "NOT") {
         $wires{$input}{signal} = ~get_signal($wires{$input}{e});
     } elsif ($wires{$input}{op} eq "AND") {
@@ -76,5 +73,4 @@ sub get_signal {
     return $wires{$input}{signal};
 }
 
-my $signal = get_signal('a');
-print "$signal\n";
+print get_signal('a'), "\n";
