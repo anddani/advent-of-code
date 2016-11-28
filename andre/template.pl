@@ -4,5 +4,6 @@ use strict;
 use warnings;
 
 while (<>) {
-    print;
+    chomp $_;
+    print $_;
 }
