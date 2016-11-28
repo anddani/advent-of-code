@@ -8,9 +8,10 @@ my $sum = 0;
 while (<>) {
     chomp $_;
     my $orig_length = length($_);
-    $_ =~ s/\\\\|\\"|\\x\w{2}/q/g;
+    $_ =~ s/(["\\])/\\$1/g;
+    $_ = "\"$_\"";
 
-    $sum += $orig_length - length($_) + 2;
+    $sum += length($_) - $orig_length;
 }
 
 print "$sum\n";
