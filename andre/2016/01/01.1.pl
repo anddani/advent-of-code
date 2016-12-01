@@ -13,7 +13,7 @@ while (<>) {
     # 3 - west
     my $facing = 0;
 
-    while ($_ =~ m/([A-Z])([0-9]+),?/g) {
+    while ($_ =~ m/([LR])([0-9]+),?/g) {
         # Update direction
         if ($1 eq "R") {
             $facing = ($facing + 1) % 4;

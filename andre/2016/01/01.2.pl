@@ -15,7 +15,7 @@ while (<>) {
     # 3 - west
     my $facing = 0;
 
-    while ($_ =~ m/([A-Z])([0-9]+),?/g) {
+    while ($_ =~ m/([LR])([0-9]+),?/g) {
         my $visited_found = 0;
 
         # Update direction
