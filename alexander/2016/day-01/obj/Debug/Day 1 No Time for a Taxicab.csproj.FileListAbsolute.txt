@@ -1,9 +1,0 @@
-C:\Users\alexa\AppData\Local\Temporary Projects\Day 1 No Time for a Taxicab\bin\Debug\Day 1 No Time for a Taxicab.exe.config
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\bin\Debug\Day 1 No Time for a Taxicab.exe.config
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\bin\Debug\Day 1 No Time for a Taxicab.exe
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\bin\Debug\Day 1 No Time for a Taxicab.pdb
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\obj\Debug\Day 1 No Time for a Taxicab.csprojResolveAssemblyReference.cache
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\obj\Debug\Day_1_No_Time_for_a_Taxicab.Properties.Resources.resources
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\obj\Debug\Day 1 No Time for a Taxicab.csproj.GenerateResource.Cache
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\obj\Debug\Day 1 No Time for a Taxicab.exe
-C:\Users\alexa\Documents\advent-of-code\alexander\2016\day-01\obj\Debug\Day 1 No Time for a Taxicab.pdb
