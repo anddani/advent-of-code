@@ -5,7 +5,7 @@ use warnings;
 
 use List::Util qw/min max/;
 
-my @dial = (
+my @keypad = (
     ["1", "2", "3"],
     ["4", "5", "6"],
     ["7", "8", "9"]
@@ -27,6 +27,6 @@ while (<>) {
             $row = min $row+1, 2;
         }
     }
-    $result .= $dial[$row][$col];
+    $result .= $keypad[$row][$col];
 }
 print "$result\n";
