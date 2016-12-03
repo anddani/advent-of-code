@@ -4,6 +4,8 @@ l = ((7, 8, 9), (4, 5, 6), (1, 2, 3))
 r = 1
 c = 1
 
+code = ''
+
 for line in sys.stdin:
   for m in line.strip():
     if m == 'L':
@@ -15,5 +17,7 @@ for line in sys.stdin:
     elif m == 'U':
       r = min(2, r+1)
       
-  print(l[r][c])
+  code += str(l[r][c])
+
+print(code)
   

@@ -26,4 +26,4 @@ for line in sys.stdin:
       r = fR(r, 1)
     n += 1
   code += str(l[r][c])
-  print(code)
+print(code)
