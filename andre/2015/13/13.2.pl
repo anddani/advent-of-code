@@ -20,6 +20,12 @@ while (<>) {
     }
 }
 
+my @people = keys %happiness;
+foreach my $p (@people) {
+    $happiness{"Me"}{$p} = 0;
+    $happiness{$p}{"Me"} = 0;
+}
+
 my @keys = keys %happiness;
 my $permutor = List::Permutor->new (@keys);
 my @total;
