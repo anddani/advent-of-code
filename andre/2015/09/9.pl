@@ -8,8 +8,6 @@ use List::Util qw/max min/;
 
 my %distances;
 
-
-
 while (<>) {
     chomp $_;
     $_ =~ m/(\w+) to (\w+) = (\d+)/;
