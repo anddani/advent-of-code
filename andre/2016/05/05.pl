@@ -12,9 +12,7 @@ while (<>) {
     my $hash = "";
     my $first = "";
     for (1..8) {
-        while (($hash = md5_hex($id.$num)) !~ m/^00000.*/g) {
-            $num++;
-        }
+        $num++ while (($hash = md5_hex($id.$num)) !~ m/^00000.*/g);
         $first .= substr($hash, 5, 1);
         $num++;
     }
@@ -24,13 +22,10 @@ while (<>) {
     $num = 0;
     $hash = "";
     while (length(join("", @second)) < 8) {
-        while (($hash = md5_hex($id.$num)) !~ m/^00000.*/g) {
-            $num++;
-        }
+        $num++ while (($hash = md5_hex($id.$num)) !~ m/^00000.*/g);
+
         if ($hash =~ m/^00000([0-7])(.)/) {
-            if ($second[int($1)] eq "") {
-                $second[int($1)] = $2;
-            }
+            $second[int($1)] = $2 if ($second[int($1)] eq "");
         }
         $num++;
     }
