@@ -1,0 +1,14 @@
+#!/usr/bin/awk -f
+{
+    a1 = $1; b1 = $2; c1 = $3
+    getline
+    a2 = $1; b2 = $2; c2 = $3
+    getline
+    a3 = $1; b3 = $2; c3 = $3
+    if ((a1 + a2 > a3) && (a1 + a3 > a2) && (a2 + a3 > a1)) ++ok;
+    if ((b1 + b2 > b3) && (b1 + b3 > b2) && (b2 + b3 > b1)) ++ok;
+    if ((c1 + c2 > c3) && (c1 + c3 > c2) && (c2 + c3 > c1)) ++ok;
+}
+END {
+    print ok
+}
