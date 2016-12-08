@@ -6,7 +6,7 @@ use warnings;
 use Data::Dumper;
 
 my @screen;
-push @screen, [(0) x 50] for 1..6;
+push @screen, [('.') x 50] for 1..6;
 my $num_rows = scalar(@screen);
 
 while (<>) {
@@ -16,7 +16,7 @@ while (<>) {
     if ($_ =~ m/rect (\d+)x(\d+)/) {
         for my $x (0..($1-1)) {
             for my $y (0..($2-1)) {
-                $screen[$y]->[$x] = 1;
+                $screen[$y]->[$x] = '#';
             }
         }
     # Rotate column or row
@@ -38,12 +38,6 @@ while (<>) {
 }
 
 my $sum = 0;
-map { $sum += scalar(grep { $_ } @{$_}) } @screen;
+map { $sum += scalar(grep { $_ eq '#' } @{$_}) } @screen;
 print "$sum\n";
-
-for my $row (0..5) {
-    for my $col (0..49) {
-        print $screen[$row]->[$col] ? '#' : '.';
-    }
-    print "\n";
-}
+map { print "@{$_}\n" } @screen;
