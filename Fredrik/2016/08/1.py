@@ -1,75 +1,39 @@
 import sys
 
 def rotate(l, n):
+    if n != 0:
+        n = n % len(l)
         return l[-n:] + l[:-n]
 
-sX = 50
-sY = 6
-#sX = 7
-#sY = 3
-#sX = 7
-#sY = 3
-k = [[0 for _ in range(0,sX)] for _ in range (0,sY)]
-#print(k)
+X = 50
+Y = 6
+screen = [['.' for _ in range(0,X)] for _ in range (0,Y)]
+
 for line in sys.stdin:
-    l = line.strip('\n').split(' ')
-    if l[0] == 'rect':
-        x, y = l[1].split('x')
-        for a in range(0,int(y)):
-            for b in range(0,int(x)):
-                k[a][b] = 1
-    elif l[0] == 'rotate':
-        ax, nbr = l[2].split('=')
+    splitted_line = line.strip('\n').split(' ')
+    if splitted_line[0] == 'rect':
+        x, y = splitted_line[1].split('x')
+        for row in range(0,int(y)):
+            for col in range(0,int(x)):
+                screen[row][col] = '#'
+    elif splitted_line[0] == 'rotate':
+        axis, nbr = splitted_line[2].split('=')
         nbr = int(nbr)
+        steps = int(splitted_line[4])
 
-        if ax == 'x':
-            n = int(l[4])
-            if n > sY:
-                n = int(int(l[4])/sY)
-            l = [k[i][nbr] for i in range(0,sY)]
-            l = rotate(l, n)
-            for i in range(0, sY):
-                k[i][nbr] = l[i]
+        if axis == 'x': #Rotate column
+            col_list = [screen[row][nbr] for row in range(0,Y)]
+            col_list = rotate(col_list, steps)
+            for row in range(0, Y):
+                screen[row][nbr] = col_list[row]
+                
+        elif axis == 'y': #Rotate row
+            screen[nbr] = rotate(screen[nbr], steps)
 
-
-        elif ax == 'y':
-            #print(l[4])
-            n = int(l[4])
-            if n > sX:
-                n = int(int(l[4])/sX)
-            
-            k[nbr] = rotate(k[nbr], n)
-
-
-        '''if l[1] == 'column':
-            ax, nbr = l[2].split('=')
-
-            if ax == 'x':
-                nbr = int(int(nbr)/sX)
-
-            elif ax == 'y':
-                nbr = int(int(nbr)/sY)
-
-
-        elif l[1] == 'row':
-            ax, nbr = l[2].split('=')
-            if ax == 'x':
-            elif ax == 'y':'''
-    #print(k)
-
-print(k)
-print(sum(any(k[i][j] for j in range(0,sX)) for i in range(0,sY)))
-c = 0
-for l in range(0,46, 5):
-    print('l:', l)
-    for i in range(0,sY):
-        s = ''
-        for j in range(l,l+5):
-            s += str(k[i][j]) 
-            #print(k[i][j])
-            if k[i][j]:
-                c += 1
-        print(s)
-print(c)
-
-
+# Count the lights, represented as '#'.
+print('Part 1:', sum(screen[i][j] == '#' for j in range(0,X) for i in range(0,Y))) 
+for row in range(0,Y):
+    # Easier to read the letters
+    for i in range(X,0,-5):
+        screen[row] = screen[row][:i] + ['  '] + screen[row][i:] 
+    print(''.join(screen[row]))
