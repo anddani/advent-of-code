@@ -43,7 +43,7 @@ while (<>) {
         $instructions->{$1} = {
             l=>[$2, $3],
             h=>[$4, $5]
-        }
+        };
     } elsif ($_ =~ m/(\d+) .* (\d+)/) {
         $vals->{$2} = [] unless defined($vals->{$2});
         push @{$vals->{$2}}, $1;
