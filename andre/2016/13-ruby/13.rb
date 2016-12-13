@@ -15,7 +15,7 @@ def bfs(office, start, goal)
   steps = { start => 0 }
   queue = [start]
   
-  while not queue.empty?
+  until queue.empty?
     point = queue.shift
     if not visited.include? point
       visited.add(point)
