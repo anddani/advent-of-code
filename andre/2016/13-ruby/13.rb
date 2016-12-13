@@ -14,31 +14,22 @@ def bfs(office, start, goal)
   visited = Set[]
   steps = { start => 0 }
   queue = [start]
+
+  dir = [[0, 1], [1, 0], [0, -1], [-1, 0]]
   
   until queue.empty?
     point = queue.shift
     if not visited.include? point
       visited.add(point)
-      up    = [point[0], point[1]-1]
-      down  = [point[0], point[1]+1]
-      left  = [point[0]-1, point[1]]
-      right = [point[0]+1, point[1]]
-
-      if up[1] >= 0 and not visited.include? up and office[up[1]][up[0]] == '.'
-        queue.push(up)
-        steps[up] = steps[point] + 1
-      end
-      if down[1] <= office.count-1 and not visited.include? down and office[down[1]][down[0]] == '.'
-        queue.push(down)
-        steps[down] = steps[point] + 1
-      end
-      if left[0] >= 0 and not visited.include? left and office[left[1]][left[0]] == '.'
-        queue.push(left)
-        steps[left] = steps[point] + 1
-      end
-      if right[0] <= office.count-1 and not visited.include? right and office[right[1]][right[0]] == '.'
-        queue.push(right)
-        steps[right] = steps[point] + 1
+      dir.each do |d|
+        p = [point[0]+d[0], point[1]+d[1]]
+        if p[0].between?(0, office.count-1) and
+           p[1].between?(0, office.count-1) and
+           not visited.include?(p) and
+           office[p[1]][p[0]] == '.'
+          queue.push(p)
+          steps[p] = steps[point] + 1
+        end
       end
     end
   end
