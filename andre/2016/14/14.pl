@@ -6,9 +6,7 @@ use warnings;
 use Digest::MD5 qw/md5_hex/;
 
 sub hash {
-    my $salt = shift;
-    my $index = shift;
-    my $stretch = shift;
+    my ($salt, $index, $stretch) = @_;
 
     my $hash = md5_hex($salt.$index);
     $hash = md5_hex($hash) for (1..$stretch);
@@ -16,20 +14,17 @@ sub hash {
 }
 
 sub solve {
-    my $salt = shift;
-    my $stretch = shift;
+    my ($salt, $stretch) = @_;
     my $index = 0;
     my $num_ok = 0;
     my $hash = "";
     my $five_digits;
     my @hashes;
 
-    for my $i (0..999) {
-        push @hashes, hash($salt, $i, $stretch);
-    }
+    push @hashes, hash($salt, $_, $stretch) for (0..999);
 
     while (1) {
-        # Take out current and update hash
+        # Always keep 1000 hashes from current hash
         my $c = $hashes[$index%1000];
         $hashes[$index%1000] = hash($salt, $index+1000, $stretch);
 
