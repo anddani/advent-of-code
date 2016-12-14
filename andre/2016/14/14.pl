@@ -25,7 +25,7 @@ sub solve {
     my @hashes;
 
     for my $i (0..999) {
-        push @hashes, hash($salt, $i, 2016);
+        push @hashes, hash($salt, $i, $stretch);
     }
 
     while (1) {
