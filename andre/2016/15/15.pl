@@ -23,7 +23,7 @@ sub solve {
 }
 
 while (<>) {
-    push @discs, [$1, $2] if ($_ =~ m/Disc #\d has (\d+) positions; at time=0, it is at position (\d+)/);
+    push @discs, [$1, $2] if ($_ =~ m/.* (\d+).*position (\d+)/);
 }
 
 print solve(), "\n";
