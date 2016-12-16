@@ -1,0 +1,1 @@
+[gets(nil).strip].each{|l| puts [272,35651584].map{|n| Array.new(22, Array.new(22,l).reduce{|a,b| a+"0"+a.reverse.tr('01','10')}[0..n-1]).reduce{|a,b| if not a.nil? and a.length.odd? then puts a elsif not a.nil? then a.chars.each_slice(2).to_a.map{|c|c[0] == c[1] ? "1" : "0"}.join else a end} }}
