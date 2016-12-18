@@ -13,9 +13,9 @@ sub solve {
         for my $col (0..length($line)-1) {
             my $char;
             if ($col == 0) {
-                $char = int(substr($line, 1, 1));
+                $char = substr($line, 1, 1);
             } elsif ($col == length($line)-1) {
-                $char = int(substr($line, length($line)-2, 1));
+                $char = substr($line, length($line)-2, 1);
             } else {
                 $char = int(substr($line, $col-1, 1)) ^ int(substr($line, $col+1, 1));
             }
