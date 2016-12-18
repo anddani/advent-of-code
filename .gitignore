@@ -2,6 +2,7 @@
 *.pyc
 *.swo
 test*
+a.out
 
 
 ## Ignore Visual Studio temporary files, build results, and
