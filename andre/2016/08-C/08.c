@@ -54,7 +54,8 @@ int main(int argc, const char *argv[])
         }
     }
 
-    printf("%d\n", num_lit);
+    printf("Part1: %d\n", num_lit);
+    printf("Part2: \n");
     for (i = 0; i < NUM_ROWS; i++) {
         ul mask = HIGHEST_BIT;
         for (j = 0; j < NUM_COLS; j++) {
