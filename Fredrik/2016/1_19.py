@@ -2,7 +2,7 @@
 puzzle = 5
 puzzle = 3017957
 
-# Creat ring, but exclude all Elf that will have 
+# Create ring, but exclude all Elf that will have 
 # their present stolen the first iteration.
 # We start at 3 since the input is odd.
 ring = range(3,puzzle+1,2)
