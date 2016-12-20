@@ -23,6 +23,7 @@ for my $intervals (@sorted) {
     last if $curr_e < @{$intervals}[0];
     $curr_e = max($curr_e, @{$intervals}[1]+1);
 }
+
 print "Part 1: $curr_e\n";
 
 $curr_e = 0;
@@ -32,4 +33,5 @@ for my $intervals (@sorted) {
     $sum += @{$intervals}[0] - $curr_e if ($curr_e < @{$intervals}[0]);
     $curr_e = max($curr_e, @{$intervals}[1]+1);
 }
+
 print "Part 2: ", $largest + 1 + $sum - $curr_e, "\n";
