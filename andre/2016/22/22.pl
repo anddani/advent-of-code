@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+use Data::Dumper;
+
 my %nodes;
 my $largest_x = 0;
 while (<>) {
@@ -28,4 +30,26 @@ for my $a (keys %nodes) {
 
 print "Part 1: $viable\n";
 
-my $curr = "$largest_x,0";
+my @queue;
+push @queue, [0, "$largest_x,0"];
+
+my $steps;
+my $curr;
+while (scalar(@queue)) {
+    ($steps, $curr) = @{shift @queue};
+    my ($x, $y) = split /,/, $curr;
+    my $up = $x .",". ($y-1);
+    my $down = $x .",". ($y+1);
+    my $left = ($x-1) .",". $y;
+    my $right = ($x+1) .",". $y;
+
+    for my $dir ($up, $down, $left, $right) {
+        if (exists($nodes{$dir})) {
+            if ($nodes{$curr}{used} <= $nodes{$dir}{avail}) {
+
+            }
+        }
+    }
+}
+
+print "Part 2: $steps\n";
