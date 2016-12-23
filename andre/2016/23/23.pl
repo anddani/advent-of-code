@@ -52,6 +52,8 @@ sub solve {
                 }
                 $instructions[$pc + $val] =~ s/$ins/$new_ins/;
             }
+        } elsif ($inst =~ m/mul (\w) (\w) (\w)/) {
+            $register->{$1} += int($register->{$2}) * int($register->{$3});
         }
         $pc++;
     }
