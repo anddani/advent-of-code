@@ -44,18 +44,14 @@ until queue.empty?
 
   moves = items.to_a.combination(2).to_a + items.to_a.combination(1).to_a + []
 
-  moves.select! { |m| valid?(items-m) }
+  moves.select! { |m| valid?(items - m) }
 
   [-1, 1].each do |dir|
     new_f = f+dir
-
     if new_f.between?(0, 3)
-
       moves.each do |move|
         new_floor = state[new_f] + move
-
         if valid?(new_floor)
-
           new_state = state.map(&:dup)
           new_state[f] = items - move
           new_state[new_f] = new_floor
