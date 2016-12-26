@@ -61,7 +61,7 @@ until queue.empty?
           if distance[e] == Float::INFINITY or new_cost < distance[e]
             distance[e] = new_cost
             prio = new_cost - new_state[3].count + 3*new_state[0].count + 2*new_state[1].count + new_state[2].count
-            queue.insert(new_cost, e)
+            queue.insert(prio, e)
           end
         end
       end
