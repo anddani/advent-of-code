@@ -9,7 +9,7 @@ floors = []
 floors = lines.map do |l|
   g = l.scan(/([\w\-]+) generator/).flatten.map{ |item| item[0].upcase+"G" }
   m = l.scan(/(\w+)-compatible microchip/).flatten.map{ |item| item[0].upcase+"M" }
-  g + m
+  Set.new(g + m)
 end
 
 # Valid state is when there are matching generator and chips
@@ -23,12 +23,6 @@ def valid?(floor)
     generators.any? { |g| g[0] == c[0] }
   end
 end
-
-def repr(state)
-  return state.map { |s| Set.new(s) }
-end
-
-floors.map! { |f| Set.new(f) }
 
 s = [0, floors]
 num_elems = floors.reduce(0) { |sum, e| sum += e.size }
@@ -71,7 +65,7 @@ until queue.empty?
           if distance[e] == Float::INFINITY or new_cost < distance[e]
             distance[e] = new_cost
             # Bad heuristic?
-            prio = new_cost + new_state[3].count + 3*new_state[0].count + 2*new_state[1].count + new_state[2].count
+            prio = new_cost - new_state[3].count + 3*new_state[0].count + 2*new_state[1].count + new_state[2].count
             queue.insert(new_cost, e)
           end
         end
