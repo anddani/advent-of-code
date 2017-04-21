@@ -1,0 +1,21 @@
+name:                aoc
+version:             1.0.0
+synopsis:            Yearly programming challenges
+description:         See README.md
+homepage:            https://github.com/anddani/adventofcode
+license:             BSD3
+license-file:        LICENSE
+author:              Andre Danielsson
+category:            Development
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+source-repository head
+    type:       git
+    location:   https://github.com/anddani/adventofcode
+
+executable 2015-01
+    main-is:            src/2015/01/2015-01.hs
+    build-depends:      base
+    default-language:   Haskell2010
