@@ -29,3 +29,9 @@ executable 2015-03
     build-depends:      base,
                         containers
     default-language:   Haskell2010
+executable 2015-04
+    main-is:            src/2015/04/2015-04.hs
+    build-depends:      base,
+                        bytestring,
+                        pureMD5
+    default-language:   Haskell2010

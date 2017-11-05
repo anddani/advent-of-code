@@ -2,7 +2,7 @@ import Data.List
 import Data.Set as S hiding(foldl')
 
 data House = House Int Int
-    deriving (Show, Eq, Ord)
+    deriving (Eq, Ord)
 
 deliver :: House -> Char -> House
 deliver (House x y) '<' = House (x-1) y
