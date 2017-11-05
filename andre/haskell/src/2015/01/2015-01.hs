@@ -6,7 +6,6 @@ solveOne input =
         down = length $ filter (== ')') input
     in up - down
 
-
 solveTwo :: String -> Int -> Int -> Int
 solveTwo [] _ _ = -1
 solveTwo _ (-1) steps = steps - 1
@@ -14,7 +13,6 @@ solveTwo (x:rest) floor steps
     | x == '('  = solveTwo rest (floor + 1) (steps + 1)
     | x == ')'  = solveTwo rest (floor - 1) (steps + 1)
     | otherwise = -1
-
 
 main :: IO ()
 main = do
