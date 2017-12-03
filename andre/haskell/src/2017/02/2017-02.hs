@@ -8,17 +8,11 @@ maxMin :: [[Int]] -> [(Int, Int)]
 maxMin = map (\x -> (maximum x, minimum x))
 
 solveOne :: [String] -> Int
-solveOne string = sum $ map (uncurry (-)) (maxMin matrix)
+solveOne string = sum $ map (\x -> maximum x - minimum x) matrix
     where matrix = map toIntList string
 
-divisible :: (Int, Int) -> Bool
-divisible (a, b) = a `rem` b == 0 && a /= b
-
-withDivisible :: [Int] -> (Int, Int)
-withDivisible l = head $ filter divisible [(a, b) | a <- l, b <- l]
-
 divisibles :: [[Int]] -> [(Int, Int)]
-divisibles = map withDivisible
+divisibles = map (\x -> head [(a, b) | a <- x, b <- x, a `mod` b == 0, a /= b])
 
 solveTwo :: [String] -> Int
 solveTwo string = sum $ map (uncurry quot) (divisibles matrix)
