@@ -49,7 +49,8 @@ executable 2017-02
     default-language:   Haskell2010
 executable 2017-03
     main-is:            src/2017/03/2017-03.hs
-    build-depends:      base
+    build-depends:      base,
+                        containers
     default-language:   Haskell2010
 executable 2017-04
     main-is:            src/2017/04/2017-04.hs
