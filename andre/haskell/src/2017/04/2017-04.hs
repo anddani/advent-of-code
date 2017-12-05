@@ -1,17 +1,12 @@
 import Data.List
-import qualified Data.Set as S
-
-hasDuplicates :: (Ord a) => [a] -> Bool
-hasDuplicates list = length list /= length set
-    where set = S.fromList list
 
 countUnique :: [[String]] -> Int
-countUnique = length . filter (not . hasDuplicates)
+countUnique = length . filter (\x -> length x == length (nub x))
 
 solveOne :: [[String]] -> Int
 solveOne = countUnique
 
-solveTwo :: [[String ]] -> Int
+solveTwo :: [[String]] -> Int
 solveTwo = countUnique . map (map sort)
 
 main :: IO ()
