@@ -67,3 +67,15 @@ executable 2017-06
     build-depends:      base,
                         containers
     default-language:   Haskell2010
+executable 2017-07
+    main-is:            src/2017/07/2017-07.hs
+    build-depends:      base,
+                        containers,
+                        parsec
+    default-language:   Haskell2010
+executable 2017-08
+    main-is:            src/2017/08/2017-08.hs
+    build-depends:      base,
+                        containers,
+                        parsec
+    default-language:   Haskell2010
