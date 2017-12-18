@@ -79,3 +79,9 @@ executable 2017-08
                         containers,
                         parsec
     default-language:   Haskell2010
+executable 2017-09
+    main-is:            src/2017/09/2017-09.hs
+    build-depends:      base,
+                        either-unwrap,
+                        parsec
+    default-language:   Haskell2010
