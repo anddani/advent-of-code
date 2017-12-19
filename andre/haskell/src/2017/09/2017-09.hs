@@ -32,9 +32,12 @@ solveOne :: Int -> Stream -> Int
 solveOne depth (Group gs) = depth + sum (map (solveOne (depth + 1)) gs)
 solveOne _ _ = 0
 
+solveTwo (Group gs) = sum (map solveTwo gs)
+solveTwo (Garbage g) = length g
+
 main :: IO ()
 main = do
     input <- readFile "inputs/2017-09"
     let stream = parseInput (init input)
     print $ solveOne 1 stream
-    -- print $ solveTwo input
+    print $ solveTwo stream
