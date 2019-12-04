@@ -1,4 +1,4 @@
-module Day1 (solve1) where
+module Day1 where
 
 toInt :: String -> Int
 toInt s = read s :: Int
