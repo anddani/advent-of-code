@@ -8,6 +8,7 @@ a.out
 .\#*
 .stack-work/
 **/dist-newstyle
+*.save0
 
 *_flymake.hs
 *.local
