@@ -33,10 +33,20 @@ part1 intCode =
       lastState = last $ unfoldr (\(newIntCode, pc) -> nextOperation pc <$> applyOpCode (newIntCode, pc)) (intCode, 0)
   in S.index lastState 0
 
-solve1 :: IO ()
-solve1 = do
+setInitialAddresses :: S.Seq Int -> Int -> Int -> S.Seq Int
+setInitialAddresses intCode i1 i2 =
+  S.update 2 i2 (S.update 1 i1 intCode)
+
+part2 :: S.Seq Int -> Int
+part2 intCode =
+  let maxIndex = (S.length intCode) - 1
+      (noun, verb) = head [(x, y) | x <- [0..maxIndex], y <- [0..maxIndex], part1 (setInitialAddresses intCode x y) == 19690720]
+  in  100 * noun + verb
+
+main :: IO ()
+main = do
   file <- readFile "./input/d2p1.input"
   let input = map (\x -> read x :: Int) $ splitOn "," file
   let list = S.fromList input
   print $ part1 list
-
+  print $ part2 list
