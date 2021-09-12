@@ -1,6 +1,6 @@
 mod days;
 
-use days::{d01, d02};
+use days::{d01, d02, d03};
 use std::env;
 
 fn main() {
@@ -18,6 +18,7 @@ fn main() {
         let func = match d {
             1 => d01::run,
             2 => d02::run,
+            3 => d03::run,
             _ => panic!("Not yet implemented!"),
         };
 
