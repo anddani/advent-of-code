@@ -19,6 +19,7 @@ fn main() {
             1 => d01::run,
             2 => d02::run,
             3 => d03::run,
+            4 => d04::run,
             _ => panic!("Not yet implemented!"),
         };
 
