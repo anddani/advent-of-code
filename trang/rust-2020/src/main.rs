@@ -1,6 +1,6 @@
 mod days;
 
-use days::{d01, d02, d03, d05};
+use days::{d01, d02, d03, d05, d06};
 use std::env;
 
 fn main() {
@@ -21,6 +21,7 @@ fn main() {
             3 => d03::run,
             //4 => d04::run,
             5 => d05::run,
+            6 => d06::run,
             _ => panic!("Not yet implemented!"),
         };
 
