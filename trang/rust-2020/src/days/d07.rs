@@ -4,6 +4,17 @@ use std::time::Instant;
 use petgraph::graphmap::DiGraphMap;
 use regex::Regex;
 use petgraph::algo::has_path_connecting;
+use ::petgraph::Direction;
+
+
+fn count_weight_recursive(g: &DiGraphMap<&str, usize>, root_node: &str) -> usize{
+    let mut count = 0;
+    for node in g.neighbors_directed(root_node, Direction::Outgoing) {
+        let w = g.edge_weight(root_node, node).unwrap();
+        count += w + w*count_weight_recursive(g, node);
+    }
+    return count
+}
 
 pub fn run() {
     let time = Instant::now();
@@ -27,7 +38,6 @@ pub fn run() {
 
     // Part 1
     let mut count1 = 0;
-    println!("Incoming nodes:");
     for node in g.nodes() {
         println!("Node: {:?}", node);
         if node != "shiny gold" {
@@ -38,6 +48,10 @@ pub fn run() {
     }
     println!("N bags that can contain at least 1 shiny gold bag {}", count1);
     
+    // Part 2
+    let count2 = count_weight_recursive(&g, "shiny gold");
+    println!("N bags are required inside 1 shiny gold bag {}", count2);
+
     let elapsed_ms = time.elapsed().as_nanos() as f64 / 1_000_000.0;
     println!("Elapsed: {:.3} ms", elapsed_ms);
 }
