@@ -26,7 +26,7 @@ fn count_intersection(group: Vec<&str>) -> usize {
 }
 
 pub fn run() {    
-    // Way 2
+    // Way 1
     let time = Instant::now();
     let stdin = std::fs::read_to_string("./data/input_d06.txt").unwrap();
 
