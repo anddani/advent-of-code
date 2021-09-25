@@ -1,34 +1,21 @@
-use std::io::{BufRead, BufReader};
-use std::fs::File;
 use regex::Regex;
+use std::collections::HashSet;
 
 pub fn run() {
-    let f = BufReader::new(File::open("./data/input_d04.txt").unwrap());
-    let re_byr = Regex::new(r"(19\d|20\d)").unwrap();
-    let re_iyr = Regex::new(r"").unwrap();
-    let re_eyr = Regex::new().unwrap();
-    let re_hgt = Regex::new().unwrap();
-    let re_hcl = Regex::new().unwrap();
-    let re_ecl = Regex::new().unwrap();
-    let re_pid = Regex::new().unwrap();
-    let re_cid = Regex::new().unwrap();
-
+    let stdin = std::fs::read_to_string("./data/input_d04.txt").unwrap();
+    let ps = stdin.split("\n\n").collect::<Vec<&str>>();
+    let re_p = Regex::new(r"(\w+{3}):(\S+)").unwrap();
+    let sets: HashSet<&str> = ["byr","iyr","eyr","hgt","hcl","ecl","pid"].iter().cloned().collect();
     let mut vp = 0;
-    
-    for l in f.lines() {
-        let l = l.unwrap();
-
-        let  = match key {
-            "byr" => re_byr,
-            "iyr" => re_iyr,
-            "eyr" => re_eyr,
-            "hgt" => re_hgt,
-            "hcl" => re_hcl,
-            "ecl" => re_ecl,
-            "pid" => re_pid,
-            "cid" => re_cid,
-            _ => panic!("Unknown key!"),
+    for p in ps {
+        let caps = re_p.captures_iter(&p);
+        let caps_id: HashSet<&str> = caps.map(|c| c.get(1).unwrap().as_str()).collect();
+        let intersection: HashSet<&&str> = sets.intersection(&caps_id).collect();
+        
+        if intersection.len() >= 7 {
+            vp += 1;
         }
     }
+    
     println!("Valid passports: {}", vp)
 }
