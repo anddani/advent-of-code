@@ -51,7 +51,7 @@ pub fn run() {
     }
 
     for ws2 in 2.. {
-        for (i, window) in nums.windows(ws2+1).enumerate() {
+        for (_, window) in nums.windows(ws2+1).enumerate() {
             if window.iter().sum::<i64>() == solution_1 {
                 let solution_2 = window.iter().min().unwrap() + window.iter().max().unwrap();
                 println!("Encryption weakness: {:?}", solution_2);
