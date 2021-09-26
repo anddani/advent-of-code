@@ -1,6 +1,6 @@
 mod days;
 
-use days::{d01, d02, d03, d04, d05, d06, d07, d09};
+use days::{d01, d02, d03, d04, d05, d06, d07, d09, d17};
 use std::env;
 
 fn main() {
@@ -25,10 +25,11 @@ fn main() {
             7 => d07::run,
             //8 => d08::run,
             9 => d09::run,
+            17 => d17::run,
             _ => panic!("Not yet implemented!"),
         };
 
-        println!("\n=== AOC day {}", d);
+        println!("\n=== AOC 2020 day {}", d);
         func()
     }
 }
