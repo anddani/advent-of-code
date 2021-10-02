@@ -1,17 +1,14 @@
 use std::collections::HashMap;
 
-fn run_cycle(mut coords: HashMap<(i32,i32), usize>) -> HashMap<(i32,i32), usize> {
-    let mut n_change: usize = 0;    
+fn run_cycle(mut coords: HashMap<(i32,i32), usize>) -> HashMap<(i32,i32), usize> {    
     let old_coords = coords.clone();
     for (c, &state) in &old_coords {
         let n_occupied = look_adjacent_occupied(&old_coords, *c);
         if n_occupied ==0 && state == 0 {
             coords.insert(*c, 1);
-            n_change += 1;
         } 
         if n_occupied >= 4 && state == 1 {
             coords.insert(*c, 0);
-            n_change += 1;
         }
     }
     return coords
@@ -67,7 +64,7 @@ fn look_visible_occupied(coords: &HashMap<(i32,i32), usize>, point:(i32,i32) , r
         };
         current_x += r_n;
         current_y += c_n;
-        if (n_visible_ocupied > 0 || !(0..90).contains(&current_x) || !(0..95).contains(&current_y)) { 
+        if n_visible_ocupied > 0 || !(0..90).contains(&current_x) || !(0..95).contains(&current_y) { 
             break; 
         }
     }
@@ -118,12 +115,12 @@ pub fn run() {
     if run_part2 {
         let mut old_coords = coords.clone();
         coords = run_cycle_visible(coords);
-        println!("Number of occupied seats: {}", coords.values().filter(|&n| *n == 1).count());        
+        //println!("Number of occupied seats: {}", coords.values().filter(|&n| *n == 1).count());        
         while old_coords != coords {
             old_coords = coords.clone();
             //print(&coords);
             coords = run_cycle_visible(coords);            
-            println!("Number of occupied seats: {}", coords.values().filter(|&n| *n == 1).count());        
+            //println!("Number of occupied seats: {}", coords.values().filter(|&n| *n == 1).count());        
 
         }
         println!("Stabilized! Number of occupied seats: {}", coords.values().filter(|&n| *n == 1).count());    
