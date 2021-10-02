@@ -1,6 +1,3 @@
-use petgraph::graphmap::DiGraphMap;
-use petgraph::algo::all_simple_paths;
-
 pub fn run() {
     let f = std::fs::read_to_string("./data/input_d10.txt").unwrap();
     let mut adapters = f.lines().map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
