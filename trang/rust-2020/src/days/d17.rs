@@ -4,7 +4,6 @@ fn run_cycle(mut coords: HashMap<(i64,i64,i64,i64), usize>, dim: usize) -> HashM
     let old_coords = coords.clone();
     for (c, &state) in &old_coords {
         let mut a_n = 0;
-        let mut i =0;
         for x1 in -1..2 { 
             for y1 in -1..2 {
                 for z1 in -1..2 {
@@ -13,7 +12,6 @@ fn run_cycle(mut coords: HashMap<(i64,i64,i64,i64), usize>, dim: usize) -> HashM
                             let neighbour = &(c.0+x1, c.1+y1, c.2+z1, 0);
                             //println!("{:?}, {:?}", neighbour,old_coords.get(neighbour).cloned().unwrap_or(0));
                             a_n += old_coords.get(neighbour).cloned().unwrap_or(0);
-                            i+=1;
                         }
                     } else {
                         for w1 in -1..2 {
@@ -21,7 +19,6 @@ fn run_cycle(mut coords: HashMap<(i64,i64,i64,i64), usize>, dim: usize) -> HashM
                                 let neighbour = &(c.0+x1, c.1+y1, c.2+z1, c.3+w1);
                                 //println!("{:?}, {:?}", neighbour,old_coords.get(neighbour).cloned().unwrap_or(0));
                                 a_n += old_coords.get(neighbour).cloned().unwrap_or(0);
-                                i+=1;
                             }
                         }
                     }
