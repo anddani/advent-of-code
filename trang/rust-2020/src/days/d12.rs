@@ -12,6 +12,7 @@ pub fn run() {
     let f = std::fs::read_to_string("./data/input_d12.txt").unwrap();
     let mut x: i32 = 0; // West(-) to East(+), ship at 0
     let mut y: i32 = 0; // North(-) to South(+), ship at 0
+    /* Part 1
     let mut v: (i32,i32) = (1,0); // ship facing East
     for l in f.lines() {
         let (direction, stepsize) = l.split_at(1);
@@ -21,6 +22,28 @@ pub fn run() {
             "S" => y += stepsize,
             "E" => x += stepsize,
             "W" => x -= stepsize,
+            "L" => v = rotate_vector(v, -stepsize as f32),
+            "R" => v = rotate_vector(v, stepsize as f32),
+            "F" => {
+                x += v.0*stepsize;
+                y += v.1*stepsize;
+            },
+            _ => panic!("Not yet implemented: {:?}", direction),
+        }
+        println!("{} {}", direction, stepsize);
+    }
+    println!("Manhattan distance: {}", x.abs() + y.abs());
+    */
+    
+    let mut v: (i32,i32) = (10,-1); // waypoint starts 10 units east and 1 unit north
+    for l in f.lines() {
+        let (direction, stepsize) = l.split_at(1);
+        let stepsize: i32 = stepsize.parse().unwrap();
+        match direction {
+            "N" => v = (v.0, v.1 - stepsize),
+            "S" => v = (v.0, v.1 + stepsize), 
+            "E" => v = (v.0 + stepsize, v.1), 
+            "W" => v = (v.0 - stepsize, v.1),
             "L" => v = rotate_vector(v, -stepsize as f32),
             "R" => v = rotate_vector(v, stepsize as f32),
             "F" => {
