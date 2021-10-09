@@ -9,6 +9,7 @@ a.out
 .stack-work/
 **/dist-newstyle
 *.save0
+**/.DS_store
 
 *_flymake.hs
 *.local
