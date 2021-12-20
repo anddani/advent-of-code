@@ -1,6 +1,8 @@
 use regex::Regex;
 use std::collections::HashMap;
 use std::ops::RangeInclusive;
+use std::iter::Zip;
+use std::slice::Iter;
 
 fn create_range(a:usize,b:usize) -> RangeInclusive<usize> {
     if a < b {
@@ -17,10 +19,10 @@ fn main() {
 
     for l in f.lines() {
         let c = re.captures(l).unwrap();
-        let x1 = c.name("x1").unwrap().as_str().parse::<usize>().unwrap();
-        let y1 = c.name("y1").unwrap().as_str().parse::<usize>().unwrap();
-        let x2 = c.name("x2").unwrap().as_str().parse::<usize>().unwrap();
-        let y2 = c.name("y2").unwrap().as_str().parse::<usize>().unwrap();
+        let x1: usize = c.name("x1").unwrap().as_str().parse::<usize>().unwrap();
+        let y1: usize = c.name("y1").unwrap().as_str().parse::<usize>().unwrap();
+        let x2: usize = c.name("x2").unwrap().as_str().parse::<usize>().unwrap();
+        let y2: usize = c.name("y2").unwrap().as_str().parse::<usize>().unwrap();
         //println!("{} {} {} {}", x1, y1, x2, y2);
         if x1 == x2 {
             for y in create_range(y1,y2) {
@@ -34,6 +36,22 @@ fn main() {
                 *covered_points.entry((x,y1)).or_insert(0) += 1;
             }
         }
+        if (y1 as i32 - y2 as i32).abs() == (x1 as i32 - x2 as i32).abs() {
+            let iter_zip : Zip<Iter<usize>, Iter<usize>>;
+            let rx: Vec<usize> = create_range(x1,x2).collect::<Vec<usize>>();
+            let ry: Vec<usize> = create_range(y1,y2).collect::<Vec<usize>>();
+            let ry_rev: Vec<usize> = ry.iter().rev().map(|v| *v).collect::<Vec<usize>>();
+            if (y1 as i32 - y2 as i32)*(x1 as i32 - x2 as i32) > 0 {
+                iter_zip = rx.iter().zip(ry.iter());
+            } else {
+                iter_zip = rx.iter().zip(ry_rev.iter());
+            }
+            for (x, y) in iter_zip {
+                //println!("{},{} ", x,y);
+                *covered_points.entry((*x,*y)).or_insert(0) += 1;
+            }
+        }
+        
     }
     //println!("{:?}", covered_points);
     let two = covered_points.values()
