@@ -1,6 +1,4 @@
-fn decode(lines: &Vec<&str>, i: usize) -> (char, char) {
-    //let n_numbers = lines.len();   
-    
+fn decode(lines: &Vec<&str>, i: usize) -> (char, char) {    
     let mut zeroes = 0; 
     let mut ones = 0;
     for l in lines.iter() {
@@ -22,8 +20,7 @@ fn main() {
     let f = std::fs::read_to_string("./input.txt").unwrap();
     let lines: Vec<&str> = f.lines().collect::<Vec<&str>>();
     let number_length: usize = lines.get(0).unwrap().chars().count(); 
-    println!("{}",number_length);
-    println!("{:?}", lines.get(10).unwrap());
+
     let mut gamma: String = "".to_owned(); 
     let mut epsilon: String = "".to_owned(); 
 
