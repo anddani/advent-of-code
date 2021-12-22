@@ -29,7 +29,6 @@ fn run_1_step(energy_map :&HashMap<(i32,i32), u32>) -> (HashMap<(i32,i32), u32>,
     }
     //println!("Number of zeroes at step 1 is {}", count_value(&energy_map_new,0));
 
-    //let mut energy_map_previous = energy_map_new.clone();
     let mut energy_map_new2 = energy_map_new.clone();
     loop {
         // any octopus with an energy level greater than 9 flashes
@@ -63,7 +62,6 @@ fn main() {
     for (r, l) in f.lines().enumerate() {
         for (c, h) in l.chars().enumerate() {
             energy_map0.insert((r as i32, c as i32),  h.to_digit(10).unwrap());
-            //println!("Current point ({},{}): {}", r, c, h.to_digit(10).unwrap());
         } 
     }
 
@@ -79,4 +77,17 @@ fn main() {
     }
     println!("Number of flashes after 100 rounds {}", flash_count);
 
+    //Part 2
+    let mut energy_map = energy_map0.clone();
+    let mut d = 0;
+    loop {
+        let (energy_map_new, _n_flash) = run_1_step(&energy_map);
+        d += 1;
+        energy_map = energy_map_new;
+        let n0 = count_value(&energy_map,0);
+        if n0 == energy_map.len() {
+            break
+        }
+    }
+    println!("First step during which all octopuses flash: {}",d);
 }
