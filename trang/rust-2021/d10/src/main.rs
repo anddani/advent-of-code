@@ -1,4 +1,10 @@
-fn check_line(line: &str) -> usize {
+enum LineState {
+    Complete,
+    Incorrect(usize),
+    Incomplete(Vec<char>),
+}
+
+fn check_line(line: &str) -> LineState {
     let mut stack: Vec<char> = Vec::new();
     let mut illegal_char = None;
     for c in line.chars() {
@@ -17,22 +23,21 @@ fn check_line(line: &str) -> usize {
             },
             _ => unreachable!(),
         }
-        //fprintln!("{:?} {}", stack, c);
     }
 
     if stack.is_empty() {
-        return 0
+        return LineState::Complete
     } else {
         //println!("Print Illegal char {:?} ", illegal_char);
         match illegal_char {
-            Some(')') => return 3,
-            Some('}') => return 1197,
-            Some(']') => return 57,
-            Some('>') => return 25137,
-            Some(_)   => panic!("illegal character unknown! {:?}", illegal_char),
-
+            Some(')') => return LineState::Incorrect(3),
+            Some('}') => return LineState::Incorrect(1197),
+            Some(']') => return LineState::Incorrect(57),
+            Some('>') => return LineState::Incorrect(25137),
             //correct and incomplete
-            None => return 0,
+            None => return LineState::Incomplete(stack),
+
+            _ => panic!("illegal character unknown! {:?}", illegal_char),
         }
     }
 }
@@ -40,13 +45,28 @@ fn check_line(line: &str) -> usize {
 fn main() {
     let f = std::fs::read_to_string("./input.txt").unwrap();
     let mut error_score = 0;
+    let mut autocomplete_score: Vec<usize> = Vec::new();
     for l in f.lines() {
         let r = check_line(l);
         match r {
-            0 => error_score +=0 ,
-            3 | 57 | 1197 | 25137 => error_score+= r,
-            _ => panic!("return unknown!"),
+            LineState::Complete => error_score+= 0,
+            LineState::Incorrect(score) => error_score+= score,
+            LineState::Incomplete(stack) => {
+                autocomplete_score.push(
+                    stack.iter().rev().fold(0, |acc, c| acc*5 + match c {
+                        ')' => 1,
+                        ']' => 2,
+                        '}' => 3,
+                        '>' => 4,
+                        _ => unreachable!(),
+                    })    
+                )
+            }
         }
     }
+    autocomplete_score.sort();
+    let mid = autocomplete_score.len() / 2;
+    
     println!("Total scores {}", error_score);
+    println!("Middle autocomplete scores {}", autocomplete_score[mid]);
 }
