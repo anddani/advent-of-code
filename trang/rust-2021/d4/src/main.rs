@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-//use Iterator::min_by_key;
 
 #[derive(Debug)]
 struct Board {
@@ -10,14 +9,11 @@ struct Board {
 
 fn calculate_score(board_map: &HashMap<(usize, usize), usize>, draw: &Vec<usize>) -> (usize, usize) {
     let mut score: usize = board_map.values().cloned().collect::<Vec<usize>>().iter().sum();
-    //let mut score_board: Vec<Vec<usize>> = Vec::new(); Vec vec!
     let mut score_board = vec![vec![0; 5];5];
-    //println!("{:#?}", score_board);
     let old_board_map = board_map.clone();
     for (d_i,d) in draw.iter().enumerate() {
         for (coord, num) in old_board_map.iter() {
             if d == num {
-                //println!("{:?},{:?}, {:?}", coord, d,num);
                 score_board[coord.0][coord.1] = 1;
                 score -= num;
             }
@@ -43,16 +39,13 @@ fn main() {
                                 line.split(',').map(|t| t.parse::<usize>().unwrap())
                             })
                             .collect();
-    //println!("{:?}", draw);
     let mut board_scores: Vec<Board> = Vec::new(); // (Board_number, (score, winning draw order))
-    
     
     let mut board_number = 0;
     let mut current_board_positions: HashMap<(usize, usize), usize> = HashMap::new();
     let mut row_number: usize = 0;
     for l in f.lines().skip(1) {
         if l.is_empty() {
-            //if current_board_positions.len() == 0 { continue };
             let (score, d_i) = calculate_score(&current_board_positions, &draw);
             board_number +=1;
             let current_board = Board {
@@ -69,7 +62,7 @@ fn main() {
         };
         row_number += 1;
     }
-    board_scores.remove(0);
+    board_scores.remove(0); // Remove the empty line
     println!("n_boards: {}", board_number);
     //println!("n_boards: {:?}", board_scores);
     
