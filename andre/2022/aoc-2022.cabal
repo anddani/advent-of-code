@@ -28,6 +28,8 @@ library
         src
     build-depends:
         base
+      , split
+      , text
     default-language: Haskell2010
 
 executable aoc2022-exe
