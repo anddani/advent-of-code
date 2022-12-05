@@ -3,10 +3,12 @@ module Main where
 import System.Environment (getArgs)
 import qualified Day1 as D1
 import qualified Day2 as D2
+import qualified Day3 as D3
 
 getDay :: String -> IO (Int, Int)
 getDay "1" = D1.solution
 getDay "2" = D2.solution
+getDay "3" = D3.solution
 getDay x = error $ "Unknown argument: " ++ x
 
 main :: IO ()
