@@ -2,9 +2,11 @@ module Main where
 
 import System.Environment (getArgs)
 import qualified Day1 as D1
+import qualified Day2 as D2
 
 getDay :: String -> IO (Int, Int)
 getDay "1" = D1.solution
+getDay "2" = D2.solution
 getDay x = error $ "Unknown argument: " ++ x
 
 main :: IO ()
