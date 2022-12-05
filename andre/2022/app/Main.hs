@@ -4,7 +4,7 @@ import System.Environment (getArgs)
 import qualified Day1 as D1
 
 getDay :: String -> IO (Int, Int)
-getDay "1" = D1.day1
+getDay "1" = D1.solution
 getDay x = error $ "Unknown argument: " ++ x
 
 main :: IO ()
