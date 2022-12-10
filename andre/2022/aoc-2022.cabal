@@ -27,6 +27,7 @@ library
       , Day2
       , Day3
       , Day4
+      , Day10
     hs-source-dirs:
         src
     build-depends:

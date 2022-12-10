@@ -5,12 +5,14 @@ import qualified Day1 as D1
 import qualified Day2 as D2
 import qualified Day3 as D3
 import qualified Day4 as D4
+import qualified Day10 as D10
 
 getDay :: String -> IO (Int, Int)
 getDay "1" = D1.solution
 getDay "2" = D2.solution
 getDay "3" = D3.solution
 getDay "4" = D4.solution
+getDay "10" = D10.solution
 getDay x = error $ "Unknown argument: " ++ x
 
 main :: IO ()
