@@ -1,5 +1,4 @@
 use regex::Regex;
-use std::collections::HashSet;
 
 fn check_block(block_shapes: &Vec<((i32,i32),(i32,i32),(i32,i32),(i32,i32))>, y: i32) -> Vec<(i32, i32)> {
     let mut blocked_ranges: Vec<(i32, i32)> = Vec::new();
@@ -37,7 +36,6 @@ fn check_block(block_shapes: &Vec<((i32,i32),(i32,i32),(i32,i32),(i32,i32))>, y:
 fn main() {
     let f = std::fs::read_to_string("./input.txt").unwrap();
     let mut block_shapes: Vec<((i32,i32),(i32,i32),(i32,i32),(i32,i32))> = Vec::new();
-    let mut beacon_pos: HashSet<(i32,i32)> = HashSet::new();
     let r = Regex::new(r"Sensor at x=(?P<s_x>-?\d+), y=(?P<s_y>-?\d+): closest beacon is at x=(?P<b_x>-?\d+), y=(?P<b_y>-?\d+)").unwrap();
     f.lines().for_each(|l| {
         let c = r.captures(&l).unwrap();
@@ -45,7 +43,6 @@ fn main() {
         let s_y = c.name("s_y").unwrap().as_str().parse::<i32>().unwrap();
         let b_x = c.name("b_x").unwrap().as_str().parse::<i32>().unwrap();
         let b_y = c.name("b_y").unwrap().as_str().parse::<i32>().unwrap();
-        beacon_pos.insert((b_x, b_y));
         let manhattan_distance = (s_x-b_x).abs() + (s_y-b_y).abs();
         // 4 points of the parallelogram (rhombus): up, down, left, right
         let parallelogram = ((s_x, s_y + manhattan_distance),
