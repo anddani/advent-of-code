@@ -1,4 +1,5 @@
 use regex::Regex;
+use std::time::Instant;
 
 fn check_block(block_shapes: &Vec<((i32,i32),(i32,i32),(i32,i32),(i32,i32))>, y: i32) -> Vec<(i32, i32)> {
     let mut blocked_ranges: Vec<(i32, i32)> = Vec::new();
@@ -53,6 +54,7 @@ fn main() {
         block_shapes.push(parallelogram);
     });
     
+    let time = Instant::now();
     // Part 1
     if true {
         let y = 2000000;
@@ -60,8 +62,11 @@ fn main() {
         let n_pos = blocked_ranges.iter().fold(0, |acc, r| acc + (r.1-r.0));
         println!("Number of blocked position in y=2000000: {}",n_pos);    
     };
+    let elapsed_ms = time.elapsed().as_nanos() as f64 / 1_000_000.0;
+    println!("Elapsed: {:.3} ms", elapsed_ms);
     
     // Part 2 (exploit the fact that there's only 1 position to find)
+    let time = Instant::now();
     if true {
         let length = 4000000;
         for y in 0..=length {
@@ -76,7 +81,9 @@ fn main() {
             };
         };
     
-    }
+    };
+    let elapsed_s = time.elapsed().as_nanos() as f64 / 1_000_000_000.0;
+    println!("Elapsed: {:.3} s", elapsed_s);
     
 }
 
